@@ -2,16 +2,15 @@ from pathfinding_playground import Solver
 from perlin_noise import generate_noise
 import random
 
-start = (random.randint(0,20), random.randint(0,20))
-end = (random.randint(0,20), random.randint(0,20))
+start = (random.randint(0,19), random.randint(0,19))
+end = (random.randint(0,19), random.randint(0,19))
 if start == end:
-    end = (random.randint(0,20), random.randint(0,20))
+    end = (random.randint(0,19), random.randint(0,19))
 
 
+maze = [[0 for _ in range(20)]for _ in range(20)]
 
-maze = [[None for _ in range(20)]for _ in range(20)]
-
-noise_map = generate_noise(130105, 1, 20, 20, 0.5)
+noise_map = generate_noise(random.randint(0,1000), 1, 20, 20, 0.5)
 
 
 for a in range(len(noise_map)):
