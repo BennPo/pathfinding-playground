@@ -8,17 +8,12 @@ if start == end:
     end = (random.randint(0,19), random.randint(0,19))
 
 
-maze = [[0 for _ in range(20)]for _ in range(20)]
-
 noise_map = generate_noise(random.randint(0,1000), 1, 20, 20, 0.5)
 
-
-for a in range(len(noise_map)):
-    for b in range(len(noise_map[a])):
-        if noise_map[a][b] *100 < -0.15*100:
-            maze[a][b] = 1
-        else:
-            maze[a][b] = 0
+maze = [
+    [1 if value < -0.1 else 0 for value in row]
+    for row in noise_map
+]
 
 print("Start:", start, maze[start[1]][start[0]])
 print("End:", end, maze[end[1]][end[0]])

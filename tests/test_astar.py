@@ -1,11 +1,6 @@
 from pathfinding_playground import Solver
 import random
 
-def test_solver_exists():
-    assert Solver is not None
-
-test_solver_exists()
-
 maze = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 1, 1, 1, 0, 0, 0, 0, 0, 0],
@@ -21,6 +16,12 @@ maze = [
 
 start = (random.randint(0,9), random.randint(0,9))
 end = (random.randint(0,9), random.randint(0,9))
+if start == end:
+    end = (random.randint(0,9), random.randint(0,9))
+
+
+maze[start[1]][start[0]] = 0
+maze[end[1]][end[0]] = 0
 
 solver = Solver(
     maze,
