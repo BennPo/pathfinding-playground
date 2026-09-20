@@ -158,7 +158,7 @@ class Solver:
                 elif display[y][x] == 1:
                     line += "# "
                 elif display[y][x] == "*":
-                    line += "* "
+                    line += "1 "
                 else:
                     line += ". "
             print(line)
