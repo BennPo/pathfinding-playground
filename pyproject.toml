@@ -4,7 +4,9 @@ version = "0.1.0"
 description = "A Python implementation of the A* pathfinding algorithm, built from scratch"
 readme = "README.md"
 requires-python = ">=3.11"
-dependencies = []
+dependencies = [
+    "perlin-noise",
+]
 
 
 [dependency-groups]
@@ -12,3 +14,5 @@ dev = [
     "pytest>=9.1.1",
 ]
 
+[tool.uv.sources]
+perlin-noise = { git = "https://github.com/BennPo/perlin-noise.git" }
