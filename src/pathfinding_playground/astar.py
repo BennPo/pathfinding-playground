@@ -3,10 +3,11 @@ import math
 import random
 
 class Solver:
-    def __init__(self, maze, start, end):
+    def __init__(self, maze, start, end, type = 0):
         self.maze = maze
         self.start = start
         self.end = end
+        self.type = type
 
         self.max_height = len(maze)
         self.max_width = len(maze[0])
@@ -71,6 +72,12 @@ class Solver:
 
         return neighbours
 
+    def find_dg(self, neighbour):
+        if self.type == 0:
+            return 10
+        else:
+            return abs(self.maze[neighbour[1]][neighbour[0]] * 100)
+
     def solve(self):
         while self.open_set:
 
@@ -95,7 +102,7 @@ class Solver:
                     continue
 
                 # Movement up/down/left/right costs 10
-                new_g = self.g_score[current] + 10
+                new_g = self.g_score[current] + self.find_dg(neighbour)
 
                 if (
                     neighbour not in self.g_score
@@ -109,7 +116,6 @@ class Solver:
                     self.came_from[neighbour] = current
 
                     h = self.heuristic(neighbour)
-
                     f = new_g + h
 
                     heapq.heappush(
@@ -121,13 +127,9 @@ class Solver:
 
     def traceback(self):
         path = []
-
         current = self.end
-
         while current is not None:
-
             path.append(current)
-
             current = self.came_from[current]
 
         path.reverse()
@@ -141,9 +143,7 @@ class Solver:
         ]
 
         if path:
-
             for x, y in path:
-
                 if (x, y) != self.start and (x, y) != self.end:
                     display[y][x] = "*"
 
